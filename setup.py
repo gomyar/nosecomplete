@@ -17,4 +17,4 @@ setup(name='nosecomplete',
       license='BSD',
       py_modules=['nosecomplete'],
       install_requires=['nose'],
-      entry_points={'console_scripts': ['nosecomplete=nosecomplete:main']})
+      entry_points={'console_scripts': ['completenose=nosecomplete:main']})

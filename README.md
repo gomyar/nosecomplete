@@ -4,7 +4,7 @@ Nosecomplete
 
 Nosecomplete is a nose plugin for completing test modules/classes/methods/functions from the command line.
 
-Nosecomplete is composed of two pieces: a script called 'nosecomplete' and a shell completion function that calls the script.
+Nosecomplete is composed of two pieces: a script called 'completenose' and a shell completion function that calls the script.
 
 An example using tab completion:
 
@@ -16,9 +16,9 @@ An example using tab completion:
     utils/test_decorators.py:TestRetry.test_eventual_success
 	utils/test_decorators.py:TestRetry.test_expires_raises
 
-An example calling nosecomplete directly:
+An example calling completenose directly:
 
-	% nosecomplete utils/test_decorators.py:Test<ENTER>
+	% completenose utils/test_decorators.py:Test<ENTER>
     utils/test_decorators.py:TestCache
 	utils/test_decorators.py:TestRetry
 
@@ -82,7 +82,7 @@ Add the following snippet to your .bashrc:
                 cur=$(printf "%s" ${COMP_WORDS[@]:$i})
             fi
         fi
-        COMPREPLY=(`nosecomplete ${cur} 2>/dev/null`)
+        COMPREPLY=(`completenose ${cur} 2>/dev/null`)
         __ltrim_colon_completions "$cur"
     }
     complete -o nospace -F _nosetests nosetests
@@ -111,7 +111,7 @@ zsh
     _nosetests()
     {
         cur="${COMP_WORDS[COMP_CWORD]}"
-        COMPREPLY=(`nosecomplete ${cur} 2>/dev/null`)
+        COMPREPLY=(`completenose ${cur} 2>/dev/null`)
     }
     complete -o nospace -F _nosetests nosetests
     ```
@@ -124,7 +124,7 @@ fish
     ```fish
     function __fish_nosetests
         set -l file (commandline -ot)
-        command nosecomplete $file ^/dev/null | tr ' ' '\n'
+        command completenose $file ^/dev/null | tr ' ' '\n'
     end
     complete -f -c nosetests -a '(__fish_nosetests)' -d 'Nosetests'
     ```
